@@ -1,0 +1,139 @@
+﻿# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@Web_HostAddress = https://localhost:5001
+
+@Username=administrator@localhost
+@Password=Administrator1!
+@BearerToken=CfDJ8HojaJHnxa5AgDk1qMKGTU6bzF8_xf0nFOq2phVfUWZnMWWSiwUKcaTPQprVbnsFfIlUg645GQGMH9BxTn3B9xgAmk5QRekaJLn_YXPpY6Sx-8J6vK4gUrZyyEwYs0P8c1PF_VOeB4MIGmMyqTtkjKhtQzrTmL3yvC7sgmJRh6b4PfC_TghcaP9q_rRIDPeDEi0Fun_cYFq-8f8z6vs7TWwZyaln6SS3kzTuFXhIHNMnYdlEhX-YvSJ1mVw_VxTGFI-3W6Jw6peRXkjPMGNHdnq-s55pt_VImteyRQxAjSirhCzNde_awpMeHE3NVYz-LjKZ5LQPU1zFz91sm85QEUnGzdkadD_MYArffr7Uuax6qci_wH9w3S4AB2NmOr9eGwkX46FFjd3xoHpUHRsCeUd0fgb_HEaqA_aWjsVskJzUEjziQe0a06B62QDHMsBBR3cVmqpzF9t1_x5KKjvEykqCAOoVNOhOFEPS2WIyHw2U-AYPuMIB3DNOrx95a61aZWrFF5OAW7XUqHH3zah_6slw8xcPRUgEICazgUG5ge2ctHMahf1RUeSJF54K6RBvMaq7XdbPu-H4Wllpru5ghHZYmUrdBn6YKZPHOaznRhZCeMAhBBcT4Lyz4MzFppVn430toSycQHuXIfhrAMhFLtGXrjHmLTLP5BquTF3IdMhpVSdSPSjxyYksdbp1xZuipqUCMl_jLaWFpmEVP65s-DzYjHDSK20uFMH6L7LBRLUEVK_DQG40Eg7D_QCxkVrnCnIY0BoZBBtfYBW_xHGl63aHY64sa7-9NzwTya23ArkXpwGUldQR2G8l_Eif6YwttQ
+@RefreshToken=CfDJ8HojaJHnxa5AgDk1qMKGTU6OGe9wMSaerZZxA2qa1TLYuRk-QeZSbnAloVAiRGUDV_cct_uqHZro3HDrVzuT3eAMdEETVJsDyHu3jSXh6QD8Z59I2YE9XsppDzcTxZM8opp5DSsU7Np9_Yf3g3ye50lRsffSvdWz_89RMfNzG4kEIkP1PYTNyRUZ5-EYfBZilIDbsKaur6Ufe4-HpdTkoeSjA83zS3806YLCqxC630w-jIFSMmIe9_fvZpd0oUXn9xhf3DgBexp18VvYkrQoTD1D-zZ_g0ZvFZctL5i8dfKecW7EEKV3300yQiV795HHqRHHR0ylgTv_RRo_tUXVGD1UmLOk4zNpLgzrggicuBFTT8jxJe7FulRnH7fTzSiVTN3rMb1lkzZckRype8HozwmVfVhqopAUM07FsNj0fH55rLjbAYr5hLD-0H9hay75LPbMc37TigX2DD5QNQvYgKzd4sD7SXJPrLc2o7YeCLoos-6o4Co6BDSsG2IoRiwA5iWPu60aUzpo2mMA2N8LTGCKQ6YJnrzFDjp6xd-izX2d2lwOi8fWaL4h2hIDE4jOBg6AKmIyt7L--uuyVdfzm6bvzVebj_0K45B6m28gXqrKzgrYnPXtu6f5VQxe_xRQ7H2SVUtQuZPz15qUBw7wMHRnJrm6BsghzAhc6-HM99A0D-ZdOsNx3wrdFhXB9lMTlO4g7d3xNlY0JlL8IZ5v2FY1bGXzp7I_tc6ZyeYlaVJJsaVkkYTPRxYwpOOm7mbvi7kos2Q1-c1hpXZXqStPxHAtz463e_qWrLMQFvLOOhhM0s7l1QJINLGLdrNz3RIMU0TsW058b3jw7dNatrxGCDU
+
+# POST Users Register
+POST {{Web_HostAddress}}/api/Users/register
+Content-Type: application/json
+
+{
+  "email": "{{Username}}",
+  "password": "{{Password}}"
+}
+
+###
+
+# POST Users Login
+POST {{Web_HostAddress}}/api/Users/login
+Content-Type: application/json
+
+{
+  "email": "{{Username}}",
+  "password": "{{Password}}"
+}
+
+###
+
+# POST Users Refresh
+POST {{Web_HostAddress}}/api/Users/Refresh
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+  "refreshToken": "{{RefreshToken}}"
+}
+
+###
+
+# GET WeatherForecast
+GET {{Web_HostAddress}}/api/WeatherForecasts
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# GET TodoLists
+GET {{Web_HostAddress}}/api/TodoLists
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# POST TodoLists
+POST {{Web_HostAddress}}/api/TodoLists
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+// CreateTodoListCommand
+{
+  "Title": "Backlog"
+}
+
+###
+
+# PUT TodoLists
+PUT {{Web_HostAddress}}/api/TodoLists/1
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+// UpdateTodoListCommand
+{
+  "Id": 1,
+  "Title": "Product Backlog"
+}
+
+###
+
+# GET TodoItems
+@PageNumber = 1
+@PageSize = 10
+GET {{Web_HostAddress}}/api/TodoItems?ListId=1&PageNumber={{PageNumber}}&PageSize={{PageSize}}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# POST TodoItems
+POST {{Web_HostAddress}}/api/TodoItems
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+// CreateTodoItemCommand
+{
+  "ListId": 1,
+  "Title": "Eat a burrito 🌯"
+}
+
+###
+
+#PUT TodoItems UpdateItemDetails
+PUT {{Web_HostAddress}}/api/TodoItems/UpdateDetail/1
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+// UpdateTodoItemDetailCommand
+{
+  "Id": 1,
+  "ListId": 1,
+  "Priority": 3,
+  "Note": "This is a good idea!"
+}
+
+###
+
+# PUT TodoItems
+PUT {{Web_HostAddress}}/api/TodoItems/1
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+// UpdateTodoItemCommand
+{
+  "Id": 1,
+  "Title": "Eat a yummy burrito 🌯",
+  "Done": true
+}
+
+###
+
+# DELETE TodoItem
+DELETE {{Web_HostAddress}}/api/TodoItems/1
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# DELETE TodoLists
+DELETE {{Web_HostAddress}}/api/TodoLists/1
+Authorization: Bearer {{BearerToken}}
+
+###
