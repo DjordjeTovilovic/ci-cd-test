@@ -18,6 +18,7 @@ public class TodoItems : EndpointGroupBase
             .MapPut(UpdateTodoItem, "{id}")
             .MapPut(UpdateTodoItemDetail, "UpdateDetail/{id}")
             .MapDelete(DeleteTodoItem, "{id}");
+        
     }
 
     public Task<PaginatedList<TodoItemBriefDto>> GetTodoItemsWithPagination(ISender sender, [AsParameters] GetTodoItemsWithPaginationQuery query)
