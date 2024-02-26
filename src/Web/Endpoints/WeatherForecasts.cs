@@ -9,6 +9,7 @@ public class WeatherForecasts : EndpointGroupBase
         app.MapGroup(this)
             .RequireAuthorization()
             .MapGet(GetWeatherForecasts);
+        
     }
 
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecasts(ISender sender)
